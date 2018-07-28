@@ -1,0 +1,2 @@
+# thymeleafInternalization
+Web Internalization Project 
