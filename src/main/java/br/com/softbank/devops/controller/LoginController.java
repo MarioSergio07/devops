@@ -1,9 +1,8 @@
-package br.com.softbank.academy.controller;
+package br.com.softbank.devops.controller;
 
 import javax.validation.Valid;
 
-import br.com.softbank.academy.model.User;
-import br.com.softbank.academy.service.IEmailService;
+import br.com.softbank.devops.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,16 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.softbank.academy.service.IUserService;
+import br.com.softbank.devops.service.IUserService;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
 	private IUserService userService;
-
-	@Autowired
-	private IEmailService emailService;
 
 	@RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
 	public ModelAndView login(){
@@ -35,34 +31,33 @@ public class LoginController {
 	@RequestMapping(value="/registration", method = RequestMethod.GET)
 	public ModelAndView registration(){
 		ModelAndView modelAndView = new ModelAndView();
-		User user = new User();
-		modelAndView.addObject("user", user);
+		Usuario user = new Usuario();
+		modelAndView.addObject("usuario", user);
 		modelAndView.setViewName("registration");
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
+	public ModelAndView createNewUser(@Valid Usuario user, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("registration");
-		User userExists = userService.findUserByEmail(user.getEmail());
+		Usuario userByEmail = userService.findUserByEmail(user.getEmail());
+		Usuario userByCpf = userService.findUserByCpf(user.getCpf());
 
 		if (bindingResult.hasErrors()) {
 			return modelAndView;
 		}
-		if (userExists != null) {
-			modelAndView.addObject("messageCreated", "error");
+		if (userByEmail != null) {
+			modelAndView.addObject("messageCreated", "errorEmail");
+			return modelAndView;
+		} else if (userByCpf != null) {
+			modelAndView.addObject("messageCreated", "errorCpf");
 			return modelAndView;
 		}
 		 else {
 			userService.saveUser(user);
 			modelAndView.addObject("messageCreated", "success");
-			modelAndView.addObject("user", new User());
-				try{
-					emailService.sendEmailWelcome(user);
-				} catch (Exception ex){
-					ex.printStackTrace();
-				}
+			modelAndView.addObject("usuario", new Usuario());
 		}
 		return modelAndView;
 	}
@@ -71,8 +66,8 @@ public class LoginController {
 	public ModelAndView home(){
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findUserByEmail(auth.getName());
-		modelAndView.addObject("user", user);
+		Usuario user = userService.findUserByEmail(auth.getName());
+		modelAndView.addObject("usuario", user);
 		modelAndView.addObject("adminMessage");
 		modelAndView.setViewName("admin/home");
 		return modelAndView;

@@ -1,4 +1,4 @@
-package br.com.softbank.academy.configuration;
+package br.com.softbank.devops.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

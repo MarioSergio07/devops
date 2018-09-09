@@ -1,4 +1,6 @@
-package br.com.softbank.academy.model;
+package br.com.softbank.devops.model;
+
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +11,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "role")
+@Data
 public class Role {
-	@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="role_id")
-	private int id;
-	private String role;
+    @Column(name="role_id")
+    private Long id;
+    private String role;
 }

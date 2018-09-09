@@ -1,12 +1,24 @@
-# thymeleafInternalization
-Web Internalization Project 
+#Devops
+Projeto devops - Softbank
 
-- http://localhost:8080/registration
-- http://localhost:8080/login
+#Instalação do Maven
+sudo apt-get install maven
 
-Used technologies:
-Spring Boot
-Spring MVC
-Spring Data Jpa
-Srping Security
-Thymeleaf
+#Instalção do Docker
+sudo apt-get install docker
+sudo apt-get install docker-compose
+
+#Processo de build (Executar no diretório do pom.xml)
+sudo mvn clean package -DskipTests dockerfile:build (Gera os artefatos de publicação, e imagem Docker)
+
+#Criando o banco de dados
+sudo docker run -it --name docker-postgres -e POSTGRES_DB=db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres postgres:10.4
+
+#Linkando os containers
+sudo docker run -it --link docker-postgres -p 8080:8080 softbank/devops-app
+
+#Acessando 
+http://localhost:8080/registration
+http://localhost:8080/
+
+
