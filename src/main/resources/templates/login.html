@@ -11,18 +11,19 @@
 
 <body>
 <div id="languages" class="">
-	<a href="?lang=en"> <img th:src="@{/images/english.jpg}" th:width="35px" th:height="25px"/> </a> &nbsp;&nbsp;
-	<a href="?lang=pt"> <img th:src="@{/images/brazilian.png}" th:width="35px" th:height="25px"/> </a> &nbsp;&nbsp;
-	<a href="?lang=es"> <img th:src="@{/images/spain.jpg}" th:width="35px" th:height="25px"/> </a>
+	<a href="?lang=en"> <img th:src="@{/images/nationalties/english.jpg}" th:width="35px" th:height="25px"/> </a> &nbsp;&nbsp;
+	<a href="?lang=pt"> <img th:src="@{/images/nationalties/brazilian.png}" th:width="35px" th:height="25px"/> </a> &nbsp;&nbsp;
+	<a href="?lang=es"> <img th:src="@{/images/nationalties/spain.jpg}" th:width="35px" th:height="25px"/> </a>
 </div>
-	<form th:action="@{/registration}" method="get">
-		<button class="btn btn-md btn-warning btn-block" type="Submit" th:text="#{message.go.to.registration.page}"> </button>
-	</form>
+<br>
 
+<a href="/" class="btn btn-md btn-warning btn-block"  th:text="#{message.go.to.login}"> </a>
+<a href="/registration" class="btn btn-md btn-warning btn-block"  th:text="#{message.go.to.registration.page}"> About Us</a>
 <a href="/product/all" class="btn btn-md btn-warning btn-block"> Produtos</a>
+<a href="/aboutUs" class="btn btn-md btn-warning btn-block"> About Us</a>
 
 	<div class="container">
-		<img th:src="@{/images/login.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo" />
+		<img th:src="@{/images/login.jpeg}" class="img-responsive center-block" width="300" height="300" alt="Logo" />
 		<form th:action="@{/login}" method="POST" class="form-signin">
 			<h3 class="form-signin-heading" th:text="#{message.wellcome}"></h3>
 			<br/>

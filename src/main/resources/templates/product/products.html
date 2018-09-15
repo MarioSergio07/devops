@@ -10,21 +10,44 @@
 </head>
 
 <body>
-    <h1>Lista de Produtos</h1>
-    <table class="container">
-        <thead>
-        <tr>
-            <th>Curso</th>
-            <th>Descricao</th>
-            <th>Preço</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="produto : ${products}" >
-            <td><span th:text="${produto.name}"></span></td>
-            <td><span th:text="${produto.description}"></span></td>
-            <td><span th:text="${produto.value}"></span></td>
-            <td><img th:src="${produto.imagePath}" th:width="140px" th:height="100px"/> </td>
-        </tbody>
-    </table>
+    <h1>Filtrar</h1>
+    <form th:action="@{/product/filter}" method="post">
+        Ordenar por <br>
+        <select name="category" class="form-control">
+            <option value="name">Nome </option>
+            <option value="categoria">Categoria </option>
+            <option value="menorPreco">Menor Preço </option>
+            <option value="maiorPreco">Maior Preço </option>
+        </select>
+        <input type="text" id="name" name="name"  th:placeholder="#{message.name}" class="form-control" /> <br/>
+        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="name" type="Submit" th:text="#{message.filter}"></button>
+    </form>
+
+    <div th:switch="${messageProductList}">
+        <p th:case="'notFound'"> <span th:utext="#{message.notFound.products}"> </span> </p>
+
+        <div th:case="listFound">
+            <h1>Lista de Produtos</h1>
+            <table class="container">
+                <thead>
+                <tr>
+                    <th>Curso</th>
+                    <th>Categoria</th>
+                    <th>Descricao</th>
+                    <th>Preço</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product : ${products}" >
+                    <td><span th:text="${product.name}"></span></td>
+                    <td><span th:text="${product.category}"></span></td>
+                    <td><span th:text="${product.description}"></span></td>
+                    <td><span th:text="${product.value}"></span></td>
+                    <td><img th:src="${product.imagePath}" th:width="140px" th:height="100px"/> </td>
+                    <td> <a href="/detail/all" class="btn btn-primary" th:href="${(#mvc.url('PC#details').arg(0,product.id)).build()}"> Comprar </a></td>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
+</html>

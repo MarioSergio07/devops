@@ -15,6 +15,7 @@ public class Product {
     @Column(name="product_id")
     private Long id;
     private String name;
+    private String category;
     private String description;
     private String imagePath;
     private BigDecimal value;

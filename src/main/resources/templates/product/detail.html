@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Softbank - Product Details</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <h1>Details</h1>
+
+    Curso <span th:utext="${product.name}"></span> <br>
+    Categoria <span th:utext="${product.category}"></span> <br>
+    Descrição <span th:utext="${product.description}"></span> <br>
+    Price <span th:utext="${product.value}"></span> <br>
+    Curso <span th:utext="${product.name}"></span> <br>
+    <img th:src="${product.imagePath}" th:width="540px" th:height="500px"/> <br>
+    <a href="/admin/home" class="btn btn-primary" > Comprar </a>
+
+
+</body>
+</html>
