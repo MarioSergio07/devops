@@ -1,1 +1,1 @@
-echo teste
+sudo docker ps -a
