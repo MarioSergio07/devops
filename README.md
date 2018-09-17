@@ -17,6 +17,9 @@ sudo docker run -it --name docker-postgres -e POSTGRES_DB=db -e POSTGRES_USER=po
 #Linkando os containers
 sudo docker run -it --link docker-postgres -p 8080:8080 softbank/devops-app
 
+#Executando o Jenkins
+java -jar jenkins.war --httpPort=8180
+
 #Acessando 
 http://localhost:8080/registration
 http://localhost:8080/

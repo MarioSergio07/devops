@@ -53,7 +53,6 @@ public class ProductController {
 
     @GetMapping("/filter")
     public ModelAndView filterGet() {
-        ModelAndView mv = new ModelAndView("redirect/all");
-        return mv;
+        return this.listAll();
     }
 }

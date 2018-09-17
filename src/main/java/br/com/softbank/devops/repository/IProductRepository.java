@@ -12,19 +12,22 @@ public interface IProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByNameContainingOrderByName(String name);
     List<Product> findByDescriptionContainingOrderByName(String description);
     List<Product> findByCategoryContainingOrderByName(String category);
+    List<Product> findByCompanyContainingOrderByName(String company);
 
     List<Product> findByNameContainingOrderByCategory(String name);
     List<Product> findByDescriptionContainingOrderByCategory(String description);
     List<Product> findByCategoryContainingOrderByCategory(String category);
+    List<Product> findByCompanyContainingOrderByCategory(String company);
 
     List<Product> findByNameContainingOrderByValue(String name);
     List<Product> findByDescriptionContainingOrderByValue(String description);
     List<Product> findByCategoryContainingOrderByValue(String category);
+    List<Product> findByCompanyContainingOrderByValue(String company);
 
 
     List<Product> findByNameContainingOrderByValueDesc(String name);
     List<Product> findByDescriptionContainingOrderByValueDesc(String description);
     List<Product> findByCategoryContainingOrderByValueDesc(String category);
-
+    List<Product> findByCompanyContainingOrderByValueDesc(String category);
 
 }

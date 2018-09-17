@@ -39,21 +39,25 @@ public class ProductService implements IProductService {
                 ((ArrayList<Product>) listProducts).addAll(productRepository.findByNameContainingOrderByName(filter.getName()));
                 ((ArrayList<Product>) listProducts).addAll(productRepository.findByDescriptionContainingOrderByName(filter.getName()));
                 ((ArrayList<Product>) listProducts).addAll(productRepository.findByCategoryContainingOrderByName(filter.getName()));
+                ((ArrayList<Product>) listProducts).addAll(productRepository.findByCompanyContainingOrderByName(filter.getName()));
                 break;
             case "categoria":
                 ((ArrayList<Product>) listProducts).addAll(productRepository.findByNameContainingOrderByCategory(filter.getName()));
                 ((ArrayList<Product>) listProducts).addAll(productRepository.findByDescriptionContainingOrderByCategory(filter.getName()));
                 ((ArrayList<Product>) listProducts).addAll(productRepository.findByCategoryContainingOrderByCategory(filter.getName()));
+                ((ArrayList<Product>) listProducts).addAll(productRepository.findByCompanyContainingOrderByCategory(filter.getName()));
                 break;
             case "maiorPreco":
                 ((ArrayList<Product>) listProducts).addAll(productRepository.findByNameContainingOrderByValueDesc(filter.getName()));
                 ((ArrayList<Product>) listProducts).addAll(productRepository.findByDescriptionContainingOrderByValueDesc(filter.getName()));
                 ((ArrayList<Product>) listProducts).addAll(productRepository.findByCategoryContainingOrderByValueDesc(filter.getName()));
+                ((ArrayList<Product>) listProducts).addAll(productRepository.findByCompanyContainingOrderByValueDesc(filter.getName()));
                 break;
             case "menorPreco":
                 ((ArrayList<Product>) listProducts).addAll(productRepository.findByNameContainingOrderByValue(filter.getName()));
                 ((ArrayList<Product>) listProducts).addAll(productRepository.findByDescriptionContainingOrderByValue(filter.getName()));
                 ((ArrayList<Product>) listProducts).addAll(productRepository.findByCategoryContainingOrderByValue(filter.getName()));
+                ((ArrayList<Product>) listProducts).addAll(productRepository.findByCompanyContainingOrderByValue(filter.getName()));
                 break;
         }
         if(((ArrayList<Product>) listProducts).isEmpty()) {
