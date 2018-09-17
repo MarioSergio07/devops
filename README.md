@@ -23,7 +23,7 @@ sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sour
 sudo apt-get update
 sudo apt-get install jenkins
 
-alterar a porta de execução no arquivo: /etc/default/jenkins	HTTP_PORT=8081
+alterar a porta de execução de 8080 para 8081 no arquivo: /etc/default/jenkins	HTTP_PORT=8081
 arquivo contendo a senha inicial: /var/lib/jenkins/secrets/initialAdminPassword
 
 #Iniciando o Jenkins
