@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "product")
 @Data
-public class Product {
+public class Product implements Comparable <Product>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,4 +20,9 @@ public class Product {
     private String company;
     private String imagePath;
     private BigDecimal value;
+
+    @Override
+    public int compareTo(Product other) {
+        return this.name.compareTo(other.getName());
+    }
 }
