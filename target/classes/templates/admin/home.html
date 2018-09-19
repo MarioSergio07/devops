@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="languages">
+    <a href="?lang=en"> <img th:src="@{/images/nationalties/english.jpg}" th:width="35px" th:height="25px"/> </a> &nbsp;&nbsp;
+    <a href="?lang=pt"> <img th:src="@{/images/nationalties/brazilian.png}" th:width="35px" th:height="25px"/> </a>
+    &nbsp;&nbsp;
+    <a href="?lang=es"> <img th:src="@{/images/nationalties/spain.jpg}" th:width="35px" th:height="25px"/> </a> &nbsp;&nbsp;
+</div>
+<br>
+<div class="container">
+
+    <form th:action="@{/logout}" method="get">
+        <button class="btn btn-md btn-danger btn-block" name="registration" type="Submit"
+                th:text="#{message.logout}"></button>
+    </form>
+
+    <h1>
+        <div th:text="#{message.wellcome.system}"></div>
+    </h1>
+
+    <div class="panel-group" style="margin-top:40px">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div th:text="#{message.wellcome}"></div>
+                <span th:utext="${usuario.email}"></span>
+            </div>
+
+            <p class="admin-message-text text-center" th:text="#{message.adm.page}"></p>
+        </div>
+    </div>
+</div>
+<footer class="footer font-small blue">
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <a href="#">SoftBank</a>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
