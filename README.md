@@ -14,7 +14,7 @@ sudo mvn clean package -DskipTests dockerfile:build (Gera os artefatos de public
 #Criando o banco de dados
 sudo docker run -it --name docker-postgres -e POSTGRES_DB=db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres postgres:10.4
 
-#Linkando os containers do postgres e do java, cria um container chamado docker-spring, executa em BackGround - Este processo deve ser executado apenas uma vez
+#Linkando os containers do postgres e do java, cria um container chamado docker-spring, executa em BackGround
 sudo docker run -d --name docker-spring --link docker-postgres -p 8080:8080 softbank/devops-app
 
 #Instalando o Jenkins
@@ -38,8 +38,9 @@ localhost:9000
 
 #Passos a serem executados pelo jenkins
 sudo docker stop docker-spring
+sudo docker rm docker-spring
 sudo mvn clean package -DskipTests dockerfile:build
-sudo docker start docker-spring
+sudo docker run -d --name docker-spring --link docker-postgres -p 8080:8080 softbank/devops-app
 
 #Acessando 
 http://localhost:8080/registration
