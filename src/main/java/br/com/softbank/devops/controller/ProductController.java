@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 @RequestMapping("/product")
@@ -23,7 +25,10 @@ public class ProductController {
     @GetMapping("/all")
     public ModelAndView listAll() {
         ModelAndView mv = new ModelAndView("product/products");
-        mv.addObject("products", productService.findAll());
+
+        List<Product> products = (List<Product>) productService.findAll();
+        Collections.sort(products);
+        mv.addObject("products", products);
         mv.addObject("messageProductList", "listFound");
         return mv;
     }
