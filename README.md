@@ -9,16 +9,13 @@ sudo apt-get install docker
 sudo apt-get install docker-compose
 
 #Processo de build manual (Executar no diretório do pom.xml)
-sudo mvn clean package -DskipTests dockerfile:build (Gera os artefatos de publicação, e imagem Docker)
-
-#Processo de build automático - Este processo deve ser executado pelo Jenkins, integrando ao sonar
-sudo mvn clean sonar:sonar package -DskipTests dockerfile:build (Gera os artefatos de publicação, e imagem Docker)
+sudo mvn clean package -DskipTests dockerfile:build (Gera os artefatos de publicação )
 
 #Criando o banco de dados
 sudo docker run -it --name docker-postgres -e POSTGRES_DB=db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres postgres:10.4
 
-#Linkando os containers em BackGround - Este processo pode ser executado pelo Jenkins
-sudo docker run -d --link docker-postgres -p 8080:8080 softbank/devops-app
+#Linkando os containers do postgres e do java, cria um container chamado docker-spring, executa em BackGround - Este processo deve ser executado apenas uma vez
+sudo docker run -d --name docker-spring --link docker-postgres -p 8080:8080 softbank/devops-app
 
 #Instalando o Jenkins
 wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
@@ -38,6 +35,11 @@ Usuário: brunoSoftbank
 Apartir da pasta de instalção:
 bash sonarqube-7.3/bin/linux-x86-64/sonar.sh start
 localhost:9000
+
+#Passos a serem executados pelo jenkins
+sudo docker stop docker-spring
+sudo mvn clean package -DskipTests dockerfile:build
+sudo docker start docker-spring
 
 #Acessando 
 http://localhost:8080/registration
