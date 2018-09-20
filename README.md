@@ -37,9 +37,9 @@ bash sonarqube-7.3/bin/linux-x86-64/sonar.sh start
 localhost:9000
 
 #Passos a serem executados pelo jenkins
+sudo mvn clean package -DskipTests dockerfile:build
 sudo docker stop docker-spring
 sudo docker rm docker-spring
-sudo mvn clean package -DskipTests dockerfile:build
 sudo docker run -d --name docker-spring --link docker-postgres -p 8080:8080 softbank/devops-app
 
 #Acessando 
